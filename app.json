@@ -22,7 +22,8 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "dpe.collector"
     },
     "web": {
       "bundler": "metro",
@@ -37,7 +38,11 @@
     },
     "extra": {
       "SUPABASE_URL": "https://cwcscejvwfbsrmrjsdxq.supabase.co",
-      "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3Y3NjZWp2d2Zic3JtcmpzZHhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MTM0MDIsImV4cCI6MjA2OTI4OTQwMn0.FZZEOkeC3NA3J3g2zDadcNXlZbGZc90Z7ZtlE0S3AI4"
+      "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3Y3NjZWp2d2Zic3JtcmpzZHhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MTM0MDIsImV4cCI6MjA2OTI4OTQwMn0.FZZEOkeC3NA3J3g2zDadcNXlZbGZc90Z7ZtlE0S3AI4",
+      "router": {},
+      "eas": {
+        "projectId": "bf8be567-f3a1-45eb-92db-21cb75d7878a"
+      }
     }
   }
 }
