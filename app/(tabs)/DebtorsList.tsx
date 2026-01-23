@@ -26,6 +26,21 @@ const isActiveLoan = (loan: any) =>
   loan.is_completed !== true &&
   Number(loan.remaining ?? 0) > 0;
 
+const getDuePriority = (dueDateISO: string) => {
+  const today = normalize(new Date());
+  const due = normalize(parseISO(dueDateISO));
+
+  // negative = overdue (higher priority)
+  return differenceInCalendarDays(due, today);
+};
+
+const getLoanPriority = (dueDateISO: string) => {
+  const today = normalize(new Date());
+  const due = normalize(parseISO(dueDateISO));
+
+  // negative = overdue (higher priority)
+  return differenceInCalendarDays(due, today);
+};
 
 
 /** Normalize date to midnight */
@@ -124,6 +139,11 @@ export default function DebtorsList() {
           <View style={{ marginTop: 12 }}>
             {item.loans
               .filter(isActiveLoan)
+              .sort((a: any, b: any) => {
+                const aP = getLoanPriority(a.next_due);
+                const bP = getLoanPriority(b.next_due);
+                return aP - bP;
+              })
               .map((loan: any) => {
               const loanStatus = getPaymentStatus(loan.next_due);
 
@@ -177,9 +197,15 @@ export default function DebtorsList() {
       </View>
 
       <FlatList
-        data={debtors.filter(d =>
-          d.loans?.some(isActiveLoan)
-        )}
+        data={debtors
+          .filter(d => d.loans?.some(isActiveLoan))
+          .sort((a, b) => {
+            const aPriority = getDuePriority(a.earliest_due);
+            const bPriority = getDuePriority(b.earliest_due);
+
+            return aPriority - bPriority;
+          })
+        }
         keyExtractor={(i) => i.id.toString()}
         renderItem={renderItem}
         refreshControl={

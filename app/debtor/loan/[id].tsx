@@ -19,7 +19,6 @@ import { recordPayment } from "../../../src/services/payments";
 export default function LoanDetail() {
   // const { loan_id } = useLocalSearchParams();
   const params = useLocalSearchParams();
-  console.log("LoanDetail params:", params);
 
   const loan_id = params.id;
 
@@ -39,7 +38,6 @@ export default function LoanDetail() {
     load();
   }, []);
 
-  console.log(data)
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} />;
 
   const { debtor, loan, schedule, next } = data;
