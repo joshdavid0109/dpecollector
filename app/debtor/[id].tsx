@@ -1,20 +1,20 @@
+import { Ionicons } from "@expo/vector-icons";
+import { format, parseISO } from "date-fns";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
-  View,
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  ActivityIndicator,
-  StyleSheet,
-  FlatList,
+  View,
 } from "react-native";
-import { useLocalSearchParams, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
-import { parseISO, format } from "date-fns";
 
+import PaymentModal from "../../src/components/PaymentModal";
 import { getLoanDetail } from "../../src/services/loans";
 import { recordPayment } from "../../src/services/payments";
-import PaymentModal from "../../src/components/PaymentModal";
 
 export default function LoanDetail() {
   const { debtor_id, loan_id } = useLocalSearchParams();
@@ -104,6 +104,7 @@ export default function LoanDetail() {
                   <Text style={styles.scheduleLine}>
                     Remaining: ₱{item.remaining.toLocaleString()}
                   </Text>
+
 
                   {item.is_fully_paid ? (
                     <Text style={{ color: "green", marginTop: 4 }}>Fully Paid</Text>
